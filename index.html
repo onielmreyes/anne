@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Proposal</title>
+    <style>
+        body {
+            background: #ffcccb;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .slideshow {
+            max-width: 600px;
+            margin: auto;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Will You Be My Valentine?</h1>
+    <div class="slideshow">
+        <img id="slide" src="slide1.jpg" alt="Slideshow" style="width:100%">
+    </div>
+    <div id="valentine-question">
+        <p>Will you be my Valentine?</p>
+        <button onclick="showAnswer()">Show Answer</button>
+        <p id="answer" class="hidden">Yes! I would love to!</p>
+    </div>
+    <audio controls autoplay loop>
+        <source src="background-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        let slideIndex = 0;
+        const slides = ['slide1.jpg', 'slide2.jpg', 'slide3.jpg'];
+        const showSlides = () => {
+            const imgElement = document.getElementById('slide');
+            slideIndex = (slideIndex + 1) % slides.length;
+            imgElement.src = slides[slideIndex];
+        };
+        setInterval(showSlides, 3000);
+
+        function showAnswer() {
+            document.getElementById('answer').classList.remove('hidden');
+            celebrate();
+        }
+
+        function celebrate() {
+            alert('🎉 Hooray! 🎉');
+        }
+    </script>
+</body>
+</html>
