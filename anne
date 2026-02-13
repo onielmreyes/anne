@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anne, My Forever 💖</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+text-align:center;
+background:linear-gradient(135deg,#ff6a88,#ff99ac);
+color:white;
+overflow:hidden;
+}
+
+h1{margin-top:40px;}
+button{
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+margin:10px;
+}
+
+#startBtn,#yesBtn{
+background:white;
+color:#ff4b5c;
+}
+
+#noBtn{
+background:#ff4b5c;
+color:white;
+position:absolute;
+}
+
+#slideshow{
+width:250px;
+height:250px;
+margin:20px auto;
+border-radius:20px;
+background-size:cover;
+background-position:center;
+box-shadow:0 0 20px rgba(255,255,255,0.5);
+}
+
+.heart{
+position:absolute;
+font-size:20px;
+animation:float 5s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Anne 💖</h1>
+<div id="slideshow"></div>
+<p id="text">I prepared something special for you… 😘</p>
+
+<button id="startBtn" onclick="startExperience()">Start Our Love Story ❤️</button>
+<button id="yesBtn" onclick="yesClicked()" style="display:none;">YES 😍</button>
+<button id="noBtn" onmouseover="moveNo()" style="display:none;">NO 🙈</button>
+
+<audio id="bgMusic" loop>
+<source src="kahit.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+// PHOTO SLIDESHOW
+let photos=["photo1.jpg","photo2.jpg","photo3.jpg"];
+let index=0;
+
+function changePhoto(){
+document.getElementById("slideshow").style.backgroundImage=
+"url('"+photos[index]+"')";
+index=(index+1)%photos.length;
+}
+setInterval(changePhoto,2000);
+changePhoto();
+
+
+// START EXPERIENCE
+function startExperience(){
+document.getElementById("bgMusic").play();
+
+document.getElementById("text").innerText=
+"Anne… Will you be my Valentine? 💘";
+
+document.getElementById("startBtn").style.display="none";
+document.getElementById("yesBtn").style.display="inline-block";
+document.getElementById("noBtn").style.display="inline-block";
+}
+
+
+// RUNNING NO BUTTON + GROWING YES
+let yesSize=1;
+function moveNo(){
+let noBtn=document.getElementById("noBtn");
+noBtn.style.left=Math.random()*80+"%";
+noBtn.style.top=Math.random()*80+"%";
+
+yesSize+=0.15;
+document.getElementById("yesBtn").style.transform=
+"scale("+yesSize+")";
+}
+
+
+// YES CLICKED
+function yesClicked(){
+
+document.body.innerHTML=`
+<h1>💖 FOREVER APPROVED 💖</h1>
+<h2>Processing Marriage Contract... 📜</h2>
+<h3>Loading Lifetime Commitment... ⏳</h3>
+<h2>SUCCESS ✅</h2>
+<p>Anne, kahit maputi na ang buhok ko,</p>
+<p>Ikaw at ikaw pa rin ang pipiliin ko.</p>
+<p>Sa hirap, sa ginhawa, sa lahat ng laban —</p>
+<p>Ikaw ang tahanan ko.</p>
+<h2>- Your Husband, Oniel 😘</h2>
+`;
+
+startCelebration();
+}
+
+
+// CELEBRATION EFFECTS
+function startCelebration(){
+
+setInterval(()=>{
+let e=document.createElement("div");
+e.innerHTML=["🎉","❤️","✨","💖"][Math.floor(Math.random()*4)];
+e.className="heart";
+e.style.left=Math.random()*100+"vw";
+document.body.appendChild(e);
+setTimeout(()=>e.remove(),5000);
+},200);
+
+}
+
+
+// SECRET MESSAGE (5 taps)
+let taps=0;
+document.addEventListener("click",function(){
+taps++;
+if(taps==5){
+alert("Secret Message 💌: Anne, ikaw ang pinakamagandang nangyari sa buhay ko.");
+}
+});
+
+</script>
+
+</body>
+</html>
